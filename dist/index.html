@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="/styles.c86c3119.css" rel="stylesheet">
+        <script src="/js.52877fb3.js" type="module" defer=""></script>
+
+    <script src="/styles.c86c3119.js"></script></head>
+
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <h1 class="header__head">Cities App</h1>
+                <nav class="navigation">
+                    <ul class="navigation__list">
+                        <li class="navigation__item"><a href="/index.html">City</a></li>
+                        <li class="navigation__item"><a href="/pages\country.html">Country</a></li>
+                        <li class="navigation__item"><a href="/pages\gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+
+            <main class="app">
+                <section class="app__section">
+                    <div class="app__map" id="map"></div>
+                    <h2 class="app__heading">Find city near localization</h2>
+                    <div class="app__input-container">
+                        <label for="latitude">Latitude </label>
+                        <input class="app__input" type="number" name="latitude" step="1.000" min="-90" max="90" value="1" data-input-latitude="">
+                    </div>
+                    <div class="app__input-container">
+                        <label for="longitude">Longitude </label>
+                        <input class="app__input" type="number" name="longitude" step="1.000" min="-180" max="180" value="1" data-input-longitude="">
+                    </div>
+                    <div class="app__btn-wrapper">
+                        <button class="app__btn app__btn-send-query" data-btn-send-query="">Send query</button>
+                        <button class="app__btn app__btn-find-user-coords" data-btn-localization=""> Your
+                            localization</button>
+                    </div>
+                </section>
+
+                <section class="app__section" data-accordion="">
+                </section>
+            </main>
+
+            <footer></footer>
+        </div>
+    </body>
+
+</html>

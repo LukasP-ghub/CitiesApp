@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../styles/styles.scss" rel="stylesheet">
+    <script src="../js/index.ts" type="module" defer></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <h1 class="header__head">Cities App</h1>
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item"><a href='../index.html'>City</a></li>
+            <li class="navigation__item"><a href='./country.html'>Country</a></li>
+            <li class="navigation__item"><a href='./gallery.html'>Gallery</a></li>
+          </ul>
+        </nav>
+      </header>
+
+
+      <main class="app">
+        <section class="app__section">
+          <div class="app__map" id="map"></div>
+          <h2 class="app__heading">Find country</h2>
+          <div class="app__input-container" data-input-container>
+            <label for="country">Country name: </label>
+            <input class="app__input" type="text" name="country" list="countries" data-input-country>
+          </div>
+
+          <div class="app__btn-wrapper">
+            <button class="app__btn app__btn-send-query" data-btn-send-query>Send query</button>
+          </div>
+        </section>
+
+        <section class="app__section" data-accordion>
+        </section>
+      </main>
+
+      <footer></footer>
+    </div>
+  </body>
+
+</html>
