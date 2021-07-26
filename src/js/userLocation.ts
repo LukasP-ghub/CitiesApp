@@ -25,7 +25,4 @@ export class UserLocation {
     return { lat, long, error };
   }
 
-  userCoords() {
-
-  }
 }

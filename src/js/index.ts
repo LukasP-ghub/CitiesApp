@@ -2,31 +2,11 @@ import { UserLocation } from './userLocation';
 import { FetchData } from './fetchData';
 import { GoogleMap } from './googleMap';
 import { UiElements } from './uiElements';
+import { UiSelectors } from './uiSelectors';
 import { Slider } from './slider';
 
-class AppInit {
-  UiSelectors: {
-    input_lat_attr: string,
-    input_lng_attr: string,
-    input_country_attr: string,
-    input_container_attr: string,
-    btn_send_query_attr: string,
-    btn_auto_localization_attr: string,
-    accordion_container_attr: string,
-    slider_body_attr: string,
-    slider_arrow_left_attr: string;
-    slider_arrow_right_attr: string;
-  };
-  input_lat: HTMLInputElement | null;
-  input_lng: HTMLInputElement | null;
-  input_country: HTMLInputElement | null;
-  input_container: HTMLDivElement | null;
-  btn_auto_localization: HTMLButtonElement | null;
-  btn_send_query: HTMLButtonElement | null;
-  accordion_container: HTMLDivElement | null;
-  slider_body: HTMLUListElement | null;
-  slider_arrow_left: HTMLSpanElement | null;
-  slider_arrow_right: HTMLSpanElement | null;
+
+class AppInit extends UiSelectors {
   location: UserLocation;
   fetchData: FetchData;
   googleMap: GoogleMap | null;
@@ -34,28 +14,7 @@ class AppInit {
   slider: Slider;
 
   constructor() {
-    this.UiSelectors = {
-      input_lat_attr: '[data-input-latitude]',
-      input_lng_attr: '[data-input-longitude]',
-      input_country_attr: '[data-input-country]',
-      input_container_attr: '[data-input-container]',
-      btn_send_query_attr: '[data-btn-send-query]',
-      btn_auto_localization_attr: '[data-btn-localization]',
-      accordion_container_attr: '[data-accordion]',
-      slider_body_attr: '[data-slider-body]',
-      slider_arrow_left_attr: '[data-slider-arrow="left"]',
-      slider_arrow_right_attr: '[data-slider-arrow="right"]',
-    }
-    this.input_lat = document.querySelector(this.UiSelectors.input_lat_attr);
-    this.input_lng = document.querySelector(this.UiSelectors.input_lng_attr);
-    this.input_country = document.querySelector(this.UiSelectors.input_country_attr);
-    this.input_container = document.querySelector(this.UiSelectors.input_container_attr);
-    this.btn_auto_localization = document.querySelector(this.UiSelectors.btn_auto_localization_attr);
-    this.btn_send_query = document.querySelector(this.UiSelectors.btn_send_query_attr);
-    this.accordion_container = document.querySelector(this.UiSelectors.accordion_container_attr);
-    this.slider_body = document.querySelector(this.UiSelectors.slider_body_attr);
-    this.slider_arrow_left = document.querySelector(this.UiSelectors.slider_arrow_left_attr);
-    this.slider_arrow_right = document.querySelector(this.UiSelectors.slider_arrow_right_attr);
+    super();
     this.location = new UserLocation();
     this.fetchData = new FetchData();
     this.googleMap = null;
@@ -108,7 +67,6 @@ class AppInit {
   async fetchCountryDetails(e: any) {
     if (e.target.getAttribute('type') === 'checkbox' && !e.target.getAttribute('data-fetched')) {
       e.target.setAttribute('data-fetched', true);
-      console.log(e.target.getAttribute('data-code'));
       const { parsedResponse, error } = await this.fetchData.fetchData({ countryId: e.target.getAttribute('data-code') });
       if (!error) {
         this.uiElements.addFields(e.target.parentNode.querySelector('[data-tab-content]'), parsedResponse.data, ['capital', 'numRegions', 'flagImageUri']);
@@ -154,8 +112,6 @@ class AppInit {
   }
 
 }
-
-
 
 const appInit = new AppInit();
 appInit.init();

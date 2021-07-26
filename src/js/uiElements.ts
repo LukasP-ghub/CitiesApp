@@ -89,7 +89,7 @@ export class UiElements {
       fieldValue.classList.add('item');
       fieldValue.classList.add('item-value');
       field.textContent = key;
-      fieldValue.textContent = typeof data[key] === 'object' ? data[key].join(', ') : data[key];
+      fieldValue.textContent = typeof data[key] === 'object' && data[key] ? data[key].join(', ') : data[key];
       fragment.appendChild(field);
       fragment.appendChild(fieldValue);
     })
