@@ -1,6 +1,12 @@
 # cities-app
 
-Empty project.
+Small project in Javascript/TypeScript to try OOP.  Fetching cities near location coords and countries to get few basic statistics from GeoDB Cities API and use Goggle Maps to locate them. (No API keys included in repo).
+
+## Stack
+- HTML
+- CSS / SCSS,BEM
+- JavaScript / TypeScript
+- Parcel
 
 ## Building and running on localhost
 
@@ -14,18 +20,6 @@ To run in hot module reloading mode:
 
 ```sh
 npm start
-```
-
-To create a production build:
-
-```sh
-npm run build-prod
-```
-
-## Running
-
-```sh
-node dist/bundle.js
 ```
 
 ## Credits
