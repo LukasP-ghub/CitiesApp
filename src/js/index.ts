@@ -22,6 +22,14 @@ class AppInit extends UiSelectors {
     this.slider = new Slider(this.slider_body);
   }
 
+  getInputValue() {
+    const latitude = this.input_lat?.value ?? '';
+    const longitude = this.input_lng?.value ?? '';
+    const countryName = this.input_country?.value ?? '';
+
+    return { latitude, longitude, countryName }
+  }
+
   async handleAutoloc() {
     let { long, lat, error } = await this.location.autoLocation();
     if (!error) {
@@ -33,8 +41,7 @@ class AppInit extends UiSelectors {
   }
 
   async handleSendCoords() {
-    const latitude = this.input_lat?.value ?? '';
-    const longitude = this.input_lng?.value ?? '';
+    const { latitude, longitude } = this.getInputValue();
     const plus = parseFloat(longitude) < 0 ? '' : '+';
     const coordsArr: { lat: number, lng: number }[] = [];
     let { parsedResponse, error } = await this.fetchData.fetchData({ lat: latitude, long: longitude, plus: plus });
@@ -52,7 +59,7 @@ class AppInit extends UiSelectors {
   }
 
   async handleSendCountryName() {
-    const countryName = this.input_country?.value ?? '';
+    const { countryName } = this.getInputValue();
     const { parsedResponse, error } = await this.fetchData.fetchData({ namePrefix: countryName });
 
     if (!error) {

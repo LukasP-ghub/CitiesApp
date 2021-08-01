@@ -46,8 +46,8 @@ export class FetchData {
         }
       });
       parsedResponse = await response.json();
-      if (response.status >= 400) {
-        error = parsedResponse.message;
+      if (response.status != 200) {
+        error = parsedResponse.errors[0].message;
       }
     } catch (err) {
       error = err.message;
