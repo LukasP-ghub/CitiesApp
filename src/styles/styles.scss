@@ -47,6 +47,7 @@
     flex-wrap: wrap;
 
     .navigation__item{
+      position: relative;
       flex-shrink: 0;
       width: 100px;
       height: 40px;
@@ -56,13 +57,31 @@
       margin-bottom: 5px;
       background-image: $gradient-top-right;
       font-size: 1.5rem;
+      overflow:hidden;
+      transition: transform .2s linear;
+
+      &::before{
+        content: "";
+        position: absolute;
+        top:0;
+        left:0;
+        height: 100%;
+        width: 25%;
+        transform: translateX(-120%) skewX(-10deg);
+        background-color: $light-cornflower-blue;
+        opacity: 0.3;
+        transition: transform .5s linear;
+      }
 
       a{
         text-decoration: none;
       }
 
       &:hover{
-        box-shadow: 0 0 2px 3px $blue-green;
+        transform: scale(110%);
+        &::before{
+          transform: translateX(700%) skewX(-10deg);
+        }
       }
     }
   }
