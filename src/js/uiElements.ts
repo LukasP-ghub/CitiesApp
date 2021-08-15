@@ -11,6 +11,7 @@ export class UiElements {
     const hTitle = document.createElement('h2');
     tabsContainer.classList.add('app__accordion');
     hTitle.classList.add('app__heading');
+    hTitle.classList.add('app--bg-shadow');
     hTitle.textContent = title;
 
     data.forEach((item: any, index: number) => {
@@ -23,8 +24,10 @@ export class UiElements {
         const field = document.createElement('span');
         const fieldValue = document.createElement('span');
         field.classList.add('item');
+        field.classList.add('app--bg-shadow');
         fieldValue.classList.add('item');
         fieldValue.classList.add('item-value');
+        fieldValue.classList.add('app--bg-shadow');
         field.textContent = key;
         fieldValue.textContent = typeof item[key] === 'object' ? item[key].join(', ') : item[key];
         tabContent.appendChild(field);
@@ -86,8 +89,10 @@ export class UiElements {
       const field = document.createElement('span');
       const fieldValue = document.createElement('span');
       field.classList.add('item');
+      field.classList.add('app--bg-shadow');
       fieldValue.classList.add('item');
       fieldValue.classList.add('item-value');
+      fieldValue.classList.add('app--bg-shadow')
       field.textContent = key;
       fieldValue.textContent = typeof data[key] === 'object' && data[key] ? data[key].join(', ') : data[key];
       fragment.appendChild(field);

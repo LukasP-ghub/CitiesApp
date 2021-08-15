@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <video autoplay muted loop id="bgvid">
+      <source src="../assets/city.mp4" type="video/mp4">
+    </video>
     <div class="wrapper">
       <header class="header">
         <h1 class="header__head">Cities App</h1>
@@ -26,9 +29,9 @@
       <main class="app">
         <section class="app__section">
           <div class="app__map" id="map"></div>
-          <h2 class="app__heading">Find country</h2>
+          <h2 class="app__heading app--bg-shadow">Find country</h2>
           <div class="app__input-container" data-input-container>
-            <label for="country">Country name: </label>
+            <label for="country" class="app--bg-shadow">Country name: </label>
             <input class="app__input" type="text" name="country" list="countries" data-input-country>
           </div>
 

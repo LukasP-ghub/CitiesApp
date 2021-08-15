@@ -11,6 +11,9 @@
     <script src="/styles.c86c3119.js"></script></head>
 
     <body>
+        <video autoplay="" muted="" loop="" id="bgvid">
+            <source src="/city.76a85f0c.mp4" type="video/mp4">
+        </video>
         <div class="wrapper">
             <header class="header">
                 <h1 class="header__head">Cities App</h1>
@@ -25,13 +28,13 @@
             <main class="app">
                 <section class="app__section">
                     <div class="app__map" id="map"></div>
-                    <h2 class="app__heading">Find city near localization</h2>
+                    <h2 class="app__heading app--bg-shadow">Find city near localization</h2>
                     <div class="app__input-container">
-                        <label for="latitude">Latitude </label>
+                        <label for="latitude" class="app--bg-shadow">Latitude </label>
                         <input class="app__input" type="number" name="latitude" step="1.000" min="-90" max="90" value="1" data-input-latitude="">
                     </div>
                     <div class="app__input-container">
-                        <label for="longitude">Longitude </label>
+                        <label for="longitude" class="app--bg-shadow">Longitude </label>
                         <input class="app__input" type="number" name="longitude" step="1.000" min="-180" max="180" value="1" data-input-longitude="">
                     </div>
                     <div class="app__btn-wrapper">
