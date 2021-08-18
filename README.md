@@ -9,6 +9,11 @@ Small project in Javascript/TypeScript to try OOP.  Fetching cities near locatio
 - Parcel
 
 ## Building and running on localhost
+```sh
+https://cities-app-ts.netlify.app/
+```
+
+## Building and running on localhost
 
 First install dependencies:
 
