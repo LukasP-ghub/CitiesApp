@@ -227,7 +227,7 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 20px 10px  $white-opacity inset;
     transform: scaleY(0);
     transform-origin: top;
     transition: transform .2s;
-    z-index: 1;
+    z-index: 2;
     overflow-y: hidden;
 
     .item{
