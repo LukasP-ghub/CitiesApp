@@ -198,6 +198,7 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 20px 10px  $white-opacity inset;
       transform: translateY(-50%) rotate(90deg);
     }
      &:checked~.tab-content{
+       height: -moz-fit-content;
        height: fit-content;
        transform: scaleY(1);
      }
