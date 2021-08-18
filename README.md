@@ -8,7 +8,7 @@ Small project in Javascript/TypeScript to try OOP.  Fetching cities near locatio
 - JavaScript / TypeScript
 - Parcel
 
-## Building and running on localhost
+## Live
 https://cities-app-ts.netlify.app/
 
 ## Building and running on localhost
