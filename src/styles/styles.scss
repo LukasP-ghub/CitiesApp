@@ -102,7 +102,7 @@ body{
 }
 
 .app--bg-shadow{
-box-shadow: 0 0 10px 5px $white-opacity, 0 0 20px 10px  $white-opacity inset;
+box-shadow: 0 0 10px 5px $white-opacity, 0 0 1em .5em $white-opacity inset;
 }
 
 .app__section{
@@ -240,6 +240,9 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 20px 10px  $white-opacity inset;
     }
     .item-value{
       grid-column:3/4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .item-img{
