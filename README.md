@@ -1,6 +1,6 @@
 # cities-app
 
-Small project in Javascript/TypeScript to try OOP.  Fetching cities near location coords and countries to get few basic statistics from GeoDB Cities API and use Goggle Maps to locate them. (No API keys included in repo).
+Small project in Javascript/TypeScript to try OOP.  Fetching cities near location coords and countries to get few basic statistics from GeoDB Cities API and use Goggle Maps to locate them.
 
 ## Stack
 - HTML
@@ -8,10 +8,8 @@ Small project in Javascript/TypeScript to try OOP.  Fetching cities near locatio
 - JavaScript / TypeScript
 - Parcel
 
-## Building and running on localhost
-```sh
+## Live
 https://cities-app-ts.netlify.app/
-```
 
 ## Building and running on localhost
 
