@@ -18,7 +18,7 @@ export class UserLocation {
       })
       lat = parseFloat(res.coords.latitude.toFixed(4));
       long = parseFloat(res.coords.longitude.toFixed(4));
-    } catch (err) {
+    } catch (err: any) {
       error = err.message;
     }
 

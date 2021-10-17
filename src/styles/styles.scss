@@ -219,7 +219,7 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 1em .5em $white-opacity inset;
     grid-row:2/3;
     grid-column:1/2;
     display: grid;
-    grid-template-columns:auto 1fr 1fr;
+    grid-template-columns:auto auto auto;
     grid-auto-rows: 1.5rem;
     grid-auto-flow: row;
     align-items: center;
@@ -252,6 +252,7 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 1em .5em $white-opacity inset;
       grid-column: 1/2;
       grid-row: 1/6;
       justify-self: center;
+      padding-right: 1em;
     }
   }
 }

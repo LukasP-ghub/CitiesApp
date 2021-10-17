@@ -1,6 +1,6 @@
 export class GoogleMap {
-  map: google.maps.Map;
-  geocoder: google.maps.Geocoder;
+  private map: google.maps.Map;
+  private geocoder: google.maps.Geocoder;
 
   constructor() {
     this.map = new google.maps.Map(document.getElementById("map") as HTMLElement, {

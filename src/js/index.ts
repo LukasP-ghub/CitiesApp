@@ -30,7 +30,7 @@ class AppInit extends UiSelectors {
     return { latitude, longitude, countryName }
   }
 
-  async handleAutoloc() {
+  async handleAutolocation() {
     let { long, lat, error } = await this.location.autoLocation();
     if (!error) {
       this.input_lat!.value = `${lat}`;
@@ -40,79 +40,69 @@ class AppInit extends UiSelectors {
     }
   }
 
-  async handleSendCoords() {
+  async handleCoords() {
     const { latitude, longitude } = this.getInputValue();
     const plus = parseFloat(longitude) < 0 ? '' : '+';
     const coordsArr: { lat: number, lng: number }[] = [];
-    let { parsedResponse, error } = await this.fetchData.fetchData({ lat: latitude, long: longitude, plus: plus });
-
-    if (!error) {
+    try {
+      let { parsedResponse } = await this.fetchData.fetchData({ lat: latitude, long: longitude, plus: plus });
       parsedResponse.data.forEach((item: any) => {
         coordsArr.push({ lat: item.latitude, lng: item.longitude })
       });
       this.googleMap!.setMap(latitude, longitude);
       this.googleMap!.setMarkers(coordsArr)
       this.uiElements.createAccordion(this.accordion_container, parsedResponse.data, ['country', 'region', 'latitude', 'longitude', 'population', 'distance'], 'Found Cities:')
-    } else {
-      alert(error);
+    } catch (err: any) {
+      alert(err.message);
     }
   }
 
-  async handleSendCountryName() {
+  async handleCountry() {
     const { countryName } = this.getInputValue();
-    const { parsedResponse, error } = await this.fetchData.fetchData({ namePrefix: countryName });
-
-    if (!error) {
-      this.uiElements.createAccordion(this.accordion_container, parsedResponse.data, ['name', 'code', 'currencyCodes'], 'Found Countries:');
-      const cont = document.querySelector('.app__accordion');
-      cont!.addEventListener('click', (e) => this.fetchCountryDetails(e));
-    } else {
-      alert(error);
+    try {
+      const { parsedResponse } = await this.fetchData.fetchData({ countryId: countryName });
+      const normalizedResData = Array.isArray(parsedResponse.data) ? parsedResponse.data : [parsedResponse.data];
+      this.uiElements.createAccordion(this.accordion_container, normalizedResData, ['name', 'code', 'currencyCodes'], 'Found Countries:');
+      this.accordion_container!.addEventListener('click', (e) => this.handleCountryDetails(e));
+    } catch (err: any) {
+      alert(err.message);
     }
   }
 
-  async fetchCountryDetails(e: any) {
+  async handleCountryDetails(e: any) {
     if (e.target.getAttribute('type') === 'checkbox' && !e.target.getAttribute('data-fetched')) {
       e.target.setAttribute('data-fetched', true);
-      const { parsedResponse, error } = await this.fetchData.fetchData({ countryId: e.target.getAttribute('data-code') });
-      if (!error) {
+      try {
+        const { parsedResponse } = await this.fetchData.fetchData({ countryId: e.target.getAttribute('data-code') });
         this.uiElements.addFields(e.target.parentNode.querySelector('[data-tab-content]'), parsedResponse.data, ['capital', 'numRegions', 'flagImageUri']);
         this.googleMap!.setGeocoder(e.target.getAttribute('name'));
-      } else {
-        alert(error);
+      } catch (err: any) {
+        alert(err.message);
+        e.target.setAttribute('data-fetched', false);
       }
     }
   }
 
-  setListeners() {
+  setPageConfig() {
     switch (window.location.pathname) {
       case '/pages/country.html':
-        this.btn_send_query?.addEventListener('click', () => this.handleSendCountryName());
+        this.uiElements.addMapsScript();
+        this.uiElements.createDatalist(this.input_container, this.input_country, this.uiElements.setDataList());
+        this.btn_send_query?.addEventListener('click', () => this.handleCountry());
         break;
       case '/pages/gallery.html':
         this.slider_arrow_left?.addEventListener('click', (e) => this.slider.shift(e));
         this.slider_arrow_right?.addEventListener('click', (e) => this.slider.shift(e));
         break;
       default:
-        this.btn_auto_localization?.addEventListener('click', () => this.handleAutoloc());
-        this.btn_send_query?.addEventListener('click', () => this.handleSendCoords());
-    }
-  }
-
-  setUI() {
-    switch (window.location.pathname) {
-      case '/pages/country.html':
         this.uiElements.addMapsScript();
-        this.uiElements.createDatalist(this.input_container, this.input_country, this.uiElements.countryList);
-        break;
-      default:
-        this.uiElements.addMapsScript();
+        this.btn_auto_localization?.addEventListener('click', () => this.handleAutolocation());
+        this.btn_send_query?.addEventListener('click', () => this.handleCoords());
     }
   }
 
   init() {
-    this.setUI();
-    this.setListeners();
+    this.setPageConfig();
     (<any>window).initMap = function () {
       appInit.googleMap = document.getElementById('map') ? new GoogleMap() : null;
     };

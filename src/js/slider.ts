@@ -1,7 +1,7 @@
 export class Slider {
-  slider_body: HTMLUListElement | null;
-  itemLiveCollection: HTMLCollection | undefined;
-  transitionRange: number;
+  private slider_body: HTMLUListElement | null;
+  private itemLiveCollection: HTMLCollection | undefined;
+  private transitionRange: number;
 
   constructor(sliderBody: HTMLUListElement | null) {
     this.slider_body = sliderBody;
