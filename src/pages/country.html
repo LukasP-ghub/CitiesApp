@@ -40,12 +40,26 @@
           </div>
         </section>
 
-        <section class="app__section" data-accordion>
+        <section class="app__section" data-accordion-container>
         </section>
       </main>
 
       <footer></footer>
     </div>
+    <template data-accordion-template>
+      <h2 class="app__heading app--bg-shadow" data-accordion-title>Found Cities:</h2>
+      <div class="app__accordion" data-accordion>
+        <div class="tab" data-tab>
+          <input class="tab-head" type="checkbox" name="" id="" data-code="none" data-tab-head>
+          <label class="tab-title" for="" data-tab-title></label>
+          <div class="tab-content" data-tab-content>
+            <img src="" alt="" class="item-img" data-img>
+            <span class="item app--bg-shadow" data-item-key></span>
+            <span class="item item-value app--bg-shadow" data-item-value></span>
+          </div>
+        </div>
+      </div>
+    </template>
   </body>
 
 </html>

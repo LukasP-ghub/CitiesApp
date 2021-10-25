@@ -18,7 +18,7 @@ class AppInit extends UiSelectors {
     this.location = new UserLocation();
     this.fetchData = new FetchData();
     this.googleMap = null;
-    this.uiElements = new UiElements();
+    this.uiElements = new UiElements({ accordion_template: this.accordion_template });
     this.slider = new Slider(this.slider_body);
   }
 
@@ -112,4 +112,6 @@ class AppInit extends UiSelectors {
 
 const appInit = new AppInit();
 appInit.init();
+
+
 
