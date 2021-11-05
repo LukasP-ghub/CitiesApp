@@ -1,11 +1,10 @@
 # cities-app
-
-Small project in Javascript/TypeScript to try OOP.  Fetching cities near location coords and countries to get few basic statistics from GeoDB Cities API and use Goggle Maps to locate them.
+ Fetching cities near location coords and countries to get few basic statistics from GeoDB Cities API and use Goggle Maps to locate them.
 
 ## Stack
 - HTML
-- CSS / SCSS,BEM
-- JavaScript / TypeScript
+- SCSS, BEM
+- TypeScript
 - Parcel
 
 ## Live
