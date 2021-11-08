@@ -12,13 +12,19 @@ https://cities-app-ts.netlify.app/
 
 ## Building and running on localhost
 
-First install dependencies:
+Clone project
+
+```sh
+git clone https://github.com/LukasP-ghub/CitiesApp.git
+```
+
+Install dependencies:
 
 ```sh
 npm install
 ```
 
-To run in hot module reloading mode:
+Run
 
 ```sh
 npm start

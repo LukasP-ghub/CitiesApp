@@ -6,6 +6,7 @@ dist/*
 node_modules/
 *.log
 .env
+.idea
 # OS generated files
 .DS_Store
 .DS_Store?

@@ -87,7 +87,7 @@ class AppInit extends UiSelectors {
     switch (window.location.pathname) {
       case '/pages/country.html':
         this.uiElements.addMapsScript();
-        this.uiElements.createDatalist(this.input_container, this.input_country, this.uiElements.setDataList());
+        this.uiElements.createDatalist(this.input_container, this.input_country, this.uiElements.getDataList());
         this.btn_send_query?.addEventListener('click', () => this.handleCountry());
         break;
       case '/pages/gallery.html':
