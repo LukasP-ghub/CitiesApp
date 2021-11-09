@@ -220,7 +220,7 @@ box-shadow: 0 0 10px 5px $white-opacity, 0 0 1em .5em $white-opacity inset;
     grid-row:2/3;
     grid-column:1/2;
     display: grid;
-    grid-template-columns:auto auto auto;
+    grid-template-columns:minmax(0, max-content) auto auto;
     grid-auto-rows: 1.5rem;
     grid-auto-flow: row;
     align-items: center;
