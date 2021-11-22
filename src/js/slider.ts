@@ -40,6 +40,7 @@ export class Slider {
     } else {
       const element = this.itemLiveCollection![this.itemLiveCollection!.length - 1];
       this.slider_body!.insertBefore(element, this.slider_body!.firstElementChild);
+
       for (let i = 0; i < this.itemLiveCollection!.length; i++) {
         this.itemLiveCollection![i].classList.toggle('translate');
         setTimeout(() => {

@@ -1,33 +1,32 @@
-interface fetchDataType {
-  lat?: string;
-  long?: string;
-  plus?: string;
-  namePrefix?: string;
-  countryId?: string;
-}
+import { PageConfigurator } from './pageConfigurator';
+import { fetchDataType } from '../assets/types/types';
+
+
 
 export class FetchData {
   private API: string;
   private API_ENDPOINT: 'locations' | 'countries';
   private API_URL: string;
+  private pgConfig: PageConfigurator;
 
   constructor() {
     this.API = `https://wft-geo-db.p.rapidapi.com/v1/geo/`;
     this.API_ENDPOINT = `locations`;
     this.API_URL = '';
+    this.pgConfig = new PageConfigurator();
   }
 
   setUrl({ lat, long, plus, countryId }: fetchDataType) {
-    switch (window.location.pathname) {
-      case '/pages/country.html':
-        const query = `${countryId!.length > 3 ? `?namePrefix=${countryId}` : `${countryId}`}`;
-        this.API_ENDPOINT = 'countries';
-        this.API_URL = `${this.API}${this.API_ENDPOINT}/${query}`;
-        break;
-      default:
-        this.API_ENDPOINT = 'locations';
-        this.API_URL = `${this.API}${this.API_ENDPOINT}/${lat}${plus}${long}/nearbyCities?radius=100`
-    }
+    this.pgConfig.configHomePage(() => {
+      this.API_ENDPOINT = 'locations';
+      this.API_URL = `${this.API}${this.API_ENDPOINT}/${lat}${plus}${long}/nearbyCities?radius=100`
+    });
+
+    this.pgConfig.configCountryPage(() => {
+      const query = `${countryId!.length > 3 ? `?namePrefix=${countryId}` : `${countryId}`}`;
+      this.API_ENDPOINT = 'countries';
+      this.API_URL = `${this.API}${this.API_ENDPOINT}/${query}`;
+    })
   }
 
   async fetchData(params: fetchDataType) {

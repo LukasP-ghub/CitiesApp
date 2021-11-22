@@ -1,17 +1,7 @@
-export class UiSelectors {
-  UiSelectors: {
-    input_lat_attr: string,
-    input_lng_attr: string,
-    input_country_attr: string,
-    input_container_attr: string,
-    btn_send_query_attr: string,
-    btn_auto_localization_attr: string,
-    accordion_container_attr: string,
-    accordion_template_attr: string,
-    slider_body_attr: string,
-    slider_arrow_left_attr: string;
-    slider_arrow_right_attr: string;
-  };
+import { TUiSelectors, IUiSelectorsClass } from '../assets/types/types';
+
+export class UiSelectors implements IUiSelectorsClass {
+  UiSelectors: TUiSelectors;
   input_lat: HTMLInputElement | null;
   input_lng: HTMLInputElement | null;
   input_country: HTMLInputElement | null;
@@ -34,6 +24,15 @@ export class UiSelectors {
       btn_auto_localization_attr: '[data-btn-localization]',
       accordion_container_attr: '[data-accordion-container]',
       accordion_template_attr: '[data-accordion-template]',
+      accordion_heading_attr: '[data-accordion-title]',
+      accordion_accordion_attr: '[data-accordion]',
+      accordion_tab_attr: '[data-tab]',
+      accordion_tabHead_attr: '[data-tab-head]',
+      accordion_tabTitle_attr: '[data-tab-title]',
+      accordion_tabContent_attr: '[data-tab-content]',
+      accordion_contentKey_attr: '[data-item-key]',
+      accordion_contentValue_attr: '[data-item-value]',
+      accordion_image_attr: '[data-img]',
       slider_body_attr: '[data-slider-body]',
       slider_arrow_left_attr: '[data-slider-arrow="left"]',
       slider_arrow_right_attr: '[data-slider-arrow="right"]',

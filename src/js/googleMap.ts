@@ -11,11 +11,9 @@ export class GoogleMap {
     this.geocoder = new google.maps.Geocoder();
   }
 
-  setMap(latitude: string, longitude: string) {
-    const lat = parseFloat(parseFloat(latitude).toFixed(4));
-    const lng = parseFloat(parseFloat(longitude).toFixed(4));
+  setMap(lat: number, lng: number) {
     this.map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-      center: { lat: lat, lng: lng },
+      center: { lat, lng },
       zoom: 12,
       disableDefaultUI: true
     });
