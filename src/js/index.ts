@@ -5,6 +5,7 @@ import { UiElements } from './uiElements';
 import { UiSelectors } from './uiSelectors';
 import { Slider } from './slider';
 import { PageConfigurator } from './pageConfigurator';
+import { Accordion } from './accordion';
 
 class AppInit extends UiSelectors {
   location: UserLocation;
@@ -13,6 +14,7 @@ class AppInit extends UiSelectors {
   uiElements: UiElements;
   slider: Slider;
   pgConfig: PageConfigurator;
+  accordion?: Accordion;
 
   constructor() {
     super();
@@ -65,8 +67,15 @@ class AppInit extends UiSelectors {
       });
 
       this.googleMap!.setMap(latitude, longitude);
-      this.googleMap!.setMarkers(coordsArr)
-      this.uiElements.createAccordion(this.accordion_container, parsedResponse.data, ['country', 'region', 'latitude', 'longitude', 'population', 'distance'], 'Found Cities:')
+      this.googleMap!.setMarkers(coordsArr);
+
+      this.accordion = new Accordion({
+        container: this.accordion_container,
+        data: parsedResponse.data,
+        fieldKeys: ['country', 'region', 'latitude', 'longitude', 'population', 'distance'],
+        title: 'Found Cities:'
+      });
+
     } catch (err: any) {
       alert(err.message);
     }
@@ -77,24 +86,28 @@ class AppInit extends UiSelectors {
       const countryName = this.getCountryNameValue();
       const { parsedResponse } = await this.fetchData.fetchData({ countryId: countryName });
       const normalizedResData = Array.isArray(parsedResponse.data) ? parsedResponse.data : [parsedResponse.data];
-      this.uiElements.createAccordion(this.accordion_container, normalizedResData, ['name', 'code', 'currencyCodes'], 'Found Countries:');
-      this.accordion_container!.addEventListener('click', (e) => this.handleCountryDetails(e));
+
+      this.accordion = new Accordion({
+        container: this.accordion_container,
+        data: normalizedResData,
+        fieldKeys: ['name', 'code', 'currencyCodes'],
+        title: 'Found Countries:'
+      });
+      this.accordion.addEventCallback((e) => { this.handleCountryDetails(e) });
+
     } catch (err: any) {
       alert(err.message);
     }
   }
 
   async handleCountryDetails(e: any) {
-    if (e.target.getAttribute('type') !== 'checkbox') return;
     if (e.target.getAttribute('data-fetched')) return;
-
-    const container = e.target.parentNode.querySelector(this.UiSelectors.accordion_tabContent_attr);
     const name = e.target.getAttribute('name');
     e.target.setAttribute('data-fetched', true);
 
     try {
       const { parsedResponse } = await this.fetchData.fetchData({ countryId: e.target.getAttribute('data-code') });
-      this.uiElements.addFields(container, parsedResponse.data, ['capital', 'numRegions', 'flagImageUri']);
+      this.accordion!.addFields(parsedResponse.data, ['capital', 'numRegions', 'flagImageUri']);
       this.googleMap!.setGeocoder(name);
     } catch (err: any) {
       alert(err.message);
@@ -124,7 +137,6 @@ class AppInit extends UiSelectors {
       appInit.googleMap = document.getElementById('map') ? new GoogleMap() : null;
     };
   }
-
 }
 
 const appInit = new AppInit();
